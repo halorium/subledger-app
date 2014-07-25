@@ -3,7 +3,7 @@
 /* jasmine specs for directives go here */
 
 describe('directives', function() {
-  beforeEach(module('subledgerApp.directives'));
+  beforeEach(module('spexieApp.directives'));
 
   describe('app-version', function() {
     it('should print current version', function() {

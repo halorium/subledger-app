@@ -1,10 +1,12 @@
 /* app css stylesheet */
 
-* {
+/** {
   border: 2px solid red;
 }
-
+*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
 
 .menu {
   list-style: none;

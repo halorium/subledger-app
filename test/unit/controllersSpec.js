@@ -3,7 +3,7 @@
 /* jasmine specs for controllers go here */
 
 describe('controllers', function(){
-  beforeEach(module('subledgerApp.controllers'));
+  beforeEach(module('spexieApp.controllers'));
 
 
   it('should ....', inject(function($controller) {

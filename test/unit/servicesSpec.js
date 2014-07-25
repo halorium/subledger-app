@@ -3,7 +3,7 @@
 /* jasmine specs for services go here */
 
 describe('service', function() {
-  beforeEach(module('subledgerApp.services'));
+  beforeEach(module('spexieApp.services'));
 
 
   describe('version', function() {

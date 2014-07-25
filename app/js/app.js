@@ -1,15 +1,19 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('subledgerApp', [
+angular.module('spexieApp', [
   'ui.bootstrap',
   'ngRoute',
-  'subledgerApp.filters',
-  'subledgerApp.services',
-  'subledgerApp.directives',
-  'subledgerApp.controllers'
+  'spexieApp.filters',
+  'spexieApp.services',
+  'spexieApp.directives',
+  'spexieApp.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when(
+    '/home',
+    {templateUrl: 'partials/home.html', controller: 'homeCtrl'}
+  );
   $routeProvider.when(
     '/view1',
     {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'}
@@ -19,6 +23,6 @@ config(['$routeProvider', function($routeProvider) {
     {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'}
   );
   $routeProvider.otherwise(
-    {redirectTo: '/view1'}
+    {redirectTo: '/home'}
   );
 }]);
