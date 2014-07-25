@@ -2,6 +2,7 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('subledgerApp', [
+  'ui.bootstrap',
   'ngRoute',
   'subledgerApp.filters',
   'subledgerApp.services',
