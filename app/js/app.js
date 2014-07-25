@@ -15,6 +15,10 @@ config(['$routeProvider', function($routeProvider) {
     {templateUrl: 'partials/home.html', controller: 'homeCtrl'}
   );
   $routeProvider.when(
+    '/journal-entries',
+    {templateUrl: 'partials/journal-entries.html', controller: 'jeCtrl'}
+  );
+  $routeProvider.when(
     '/view1',
     {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'}
   );
