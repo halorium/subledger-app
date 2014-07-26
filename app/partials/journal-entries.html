@@ -1,9 +1,69 @@
-<p>Journal Entries</p>
+<!-- <div ng-controller="jeCtrl as journalEntries"> -->
 
-<div ng-controller="jeCtrl as journalEntries">
-  <ul>
-    <li ng-repeat="je in journalEntries.entries">
-      <p>{{je.description}}</p>
-    </li>
-  </ul>
+<!-- <div class="app-main-nav">
+<div class="app-main-content">
+ -->  <div class= "ember-view journal-entries">
+    <div class="ember-view index">
+
+      <aside>
+        <div>
+          <div>
+            <div>
+              Effective&nbsp;At
+            </div>
+            <div>
+              Description
+            </div>
+            <div>
+              <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  POSTED
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <button class="btn btn-link" data-ember-action="181">
+                      POSTED
+                    </button>
+                  </li>
+                  <li>
+                    <button class="btn btn-link" data-ember-action="182">
+                      POSTING
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="infinite-scroll">
+        <!-- <div ng-include src="'partials/journal-entry-listing.html'"></div> -->
+
+<article class="journal-entry list-item" ng-repeat="journalEntry in journalEntries">
+  <section class="body">
+    <div class="row">
+      <div class="col-xs-3 col-md-2">
+        <span class="time-ago" data-original-title="" title="">
+          {{journalEntry.effectiveAt}}
+        </span>
+      </div>
+      <div class="col-xs-6 col-md-9">
+        {{journalEntry.description}}
+      </div>
+      <div class="col-xs-3 col-md-1 text-right">
+        {{journalEntry.state}}
+      </div>
+    </div>
+  </section>
+</article>
+
+      </section>
+
+    </div>
+  </div>
+<!-- </div>
 </div>
+ -->
+<!-- </div> -->

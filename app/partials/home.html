@@ -1,13 +1,9 @@
 <div ng-include src="'partials/nav.html'"></div>
 
-<div ng-controller="appCtrl as app">
-  <ul>
-    <li ng-repeat="je in app.journalEntries">
-      <p>{{je.description}}</p>
-    </li>
-  </ul>
-</div>
+<div ng-include src="'partials/journal-entries.html'"></div>
+
 
 <div ng-include src="'partials/journal-entry-listing.html'"></div>
+
 
 <div ng-include src="'partials/journal-entry-show.html'"></div>

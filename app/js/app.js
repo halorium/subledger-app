@@ -19,12 +19,18 @@
     [
       '$routeProvider',
       function($routeProvider) {
-        $routeProvider.when(
-          '/',
-          {templateUrl: 'partials/home.html', controller: 'appCtrl'}
-        );
-        $routeProvider.otherwise(
-          {redirectTo: '/'}
+        $routeProvider.
+          when('/', {
+            templateUrl: 'partials/home.html',
+            controller: 'appCtrl'
+          }).
+          when('/journal_entries', {
+            templateUrl: 'partials/journal-entries.html',
+            controller: 'JournalEntriesCtrl'
+          }).
+          otherwise({
+            redirectTo: '/'
+          }
         );
       }
     ]

@@ -1,10 +1,7 @@
 /* app css stylesheet */
 
-/** {
-  border: 2px solid red;
-}
-*/
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+/*.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 body {
 font-family: 'PT Sans',sans-serif;
@@ -33,6 +30,12 @@ background-image: none;
 border-bottom: 1px solid #c3c3c3;
 border-radius: 6px 6px 0 0;
 }
+
+.journal-entry.collapsed.list-item {
+height: initial;
+}
+
+
 
 .panel-heading, .account .account-lines>header, .journal-entry.collapsed>header {
 padding: 30px 17px;
@@ -68,3 +71,4 @@ background-image: none;
   content: "";
   padding: 0;
 }
+*/
