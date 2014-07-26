@@ -1,10 +1,41 @@
 'use strict';
 
-/* Directives */
+(function(){
 
-angular.module('spexieApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
-    };
-  }]);
+  /* Directives */
+
+  var spexieAppDirectives = angular.module('spexieApp.directives', []);
+
+  spexieAppDirectives.directive(
+    'appVersion',
+    [
+      'version',
+      function(version) {
+        return function(scope, elm, attrs) {
+          elm.text(version);
+        };
+      }
+    ]
+  );
+
+  spexieAppDirectives.directive(
+    'journalEntries',
+    [
+      'je',
+      function(je){
+        return {
+          replace: true,
+          restrict: 'E',
+          controller: function(){
+            this.getJournalEntries = function(){
+
+            };
+          },
+          controllerAs: 'journalEntriesCtrl',
+          templateUrl: 'partials/journal-entries.html'
+        };
+      }
+    ]
+  );
+
+})();
