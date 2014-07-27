@@ -12,11 +12,28 @@
       '$scope',
       'JournalEntries',
       function($scope, JournalEntries){
-        $scope.journalEntries = JournalEntries.query();
+        JournalEntries.getJournalEntries({state: 'posted'}).then(
+          function(apiRes){ $scope.journalEntries = apiRes.posted_journal_entries; },
+          function(error){ $scope.error = error; }
+        );
       }
     ]
   );
 
+  spexieAppControllers.controller(
+    'JournalEntryCtrl',
+    [
+      '$scope',
+      'JournalEntry',
+      '$routeParams',
+      function($scope, JournalEntry, $routeParams){
+        JournalEntry.getJournalEntry($routeParams.journalEntryId).then(
+          function(apiRes){ $scope.journalEntry = apiRes.posted_journal_entry; },
+          function(error){ $scope.error = error; }
+        );
+      }
+    ]
+  );
 
   spexieAppControllers.controller(
     'appCtrl',

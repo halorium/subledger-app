@@ -28,6 +28,10 @@
             templateUrl: 'partials/journal-entries.html',
             controller: 'JournalEntriesCtrl'
           }).
+          when('/journal_entries/:journalEntryId', {
+            templateUrl: 'partials/journal-entry.html',
+            controller: 'JournalEntryCtrl'
+          }).
           otherwise({
             redirectTo: '/'
           }

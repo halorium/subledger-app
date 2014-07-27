@@ -18,24 +18,19 @@
     ]
   );
 
-  spexieAppDirectives.directive(
-    'journalEntries',
-    [
-      'je',
-      function(je){
-        return {
-          replace: true,
-          restrict: 'E',
-          controller: function(){
-            this.getJournalEntries = function(){
-
-            };
-          },
-          controllerAs: 'journalEntriesCtrl',
-          templateUrl: 'partials/journal-entries.html'
-        };
-      }
-    ]
-  );
+  // spexieAppDirectives.directive(
+  //   'journalEntries',
+  //   [
+  //     'je',
+  //     function(je){
+  //       return {
+  //         replace: true,
+  //         restrict: 'E',
+  //         controllerAs: 'journalEntriesCtrl',
+  //         templateUrl: 'partials/journal-entries.html'
+  //       };
+  //     }
+  //   ]
+  // );
 
 })();

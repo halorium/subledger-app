@@ -1,8 +1,4 @@
-<!-- <div ng-controller="jeCtrl as journalEntries"> -->
-
-<!-- <div class="app-main-nav">
-<div class="app-main-content">
- -->  <div class= "ember-view journal-entries">
+ <div class= "ember-view journal-entries">
     <div class="ember-view index">
 
       <aside>
@@ -39,31 +35,34 @@
       </aside>
 
       <section class="infinite-scroll">
-        <!-- <div ng-include src="'partials/journal-entry-listing.html'"></div> -->
-
-<article class="journal-entry list-item" ng-repeat="journalEntry in journalEntries">
-  <section class="body">
-    <div class="row">
-      <div class="col-xs-3 col-md-2">
-        <span class="time-ago" data-original-title="" title="">
-          {{journalEntry.effectiveAt}}
-        </span>
-      </div>
-      <div class="col-xs-6 col-md-9">
-        {{journalEntry.description}}
-      </div>
-      <div class="col-xs-3 col-md-1 text-right">
-        {{journalEntry.state}}
-      </div>
-    </div>
-  </section>
-</article>
+        <article class="journal-entry list-item" ng-repeat="journalEntry in journalEntries">
+        <!--   <p>JE: {{journalEntry.id}}</p>
+          <p>JE: {{journalEntry.book}}</p>
+          <p>JE: {{journalEntry.effective_at}}</p>
+          <p>JE: {{journalEntry.description}}</p>
+          <p>JE: {{journalEntry.reference}}</p>
+          <p>JE: {{journalEntry.version}}</p>
+         -->
+         <a href="#/journal_entries/{{journalEntry.id}}">
+          <section class="body">
+            <div class="row">
+              <div class="col-xs-3 col-md-2">
+                <span class="time-ago" data-original-title="" title="">
+                  {{journalEntry.effective_at}}
+                </span>
+              </div>
+              <div class="col-xs-6 col-md-9">
+                {{journalEntry.description}}
+              </div>
+              <div class="col-xs-3 col-md-1 text-right">
+                {{journalEntry.state}}
+              </div>
+            </div>
+          </section>
+        </a>
+        </article>
 
       </section>
 
     </div>
   </div>
-<!-- </div>
-</div>
- -->
-<!-- </div> -->
