@@ -19,24 +19,24 @@
         <col span="1" class="credit">
         <col span="1" class="reference">
       </colgroup>
-      <tbody>
-        <tr class="ember-view" ng-repeat="jeLine in journalEntry.lines">
+      <tbody ng-controller="LinesCtrl as linesCtrl">
+        <tr class="ember-view" ng-repeat="line in lines">
           <td class="acc">
-            <a class="ember-view" href="#/account/{{jeLine.account}}/lines">
-              {{jeLine.account.description || jeLine.account}}
+            <a class="ember-view" href="#/account/{{line.account}}/lines">
+              {{line.account.description || line.account}}
             </a>
           </td>
           <td class="description">
-            {{jeLine.description}}
+            {{line.description}}
           </td>
           <td class="debit">
-            {{jeLine.debit.amount || jeLine.value}}
+            {{linesCtrl.debit(line.value)}}
           </td>
           <td class="credit">
-            {{jeLine.credit.amount || jeLine.value}}
+            {{linesCtrl.credit(line.value)}}
           </td>
           <td class="reference">
-            <a href="{{jeLine.reference}}" target="_blank">
+            <a href="{{line.reference}}" target="_blank">
               <span class="glyphicon glyphicon-file"></span>
             </a>
           </td>

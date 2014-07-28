@@ -27,14 +27,40 @@
   spexieAppServices.value('subledger', subledger);
 
   spexieAppServices.factory(
-    'JournalEntries',
+    'sledgerSvc',
     [
     '$q',
     'subledger',
       function($q, subledger){
+
+        var getAccounts = function(options) {
+          var deferred = $q.defer();
+          subledger
+            .organization(subledger.creds.org)
+              .book(subledger.creds.book)
+                .account()
+                  .get(options, function(error, apiRes){
+                    if (error !== null) { deferred.reject(error); }
+                    else { deferred.resolve(apiRes); }
+                  });
+          return deferred.promise;
+        };
+
+        var getAccount = function(accountId) {
+          var deferred = $q.defer();
+          subledger
+            .organization(subledger.creds.org)
+              .book(subledger.creds.book)
+                .account(accountId)
+                  .get(function(error, apiRes){
+                    if (error !== null) { deferred.reject(error); }
+                    else { deferred.resolve(apiRes); }
+                  });
+          return deferred.promise;
+        };
+
         var getJournalEntries = function(options) {
           var deferred = $q.defer();
-
           subledger
             .organization(subledger.creds.org)
               .book(subledger.creds.book)
@@ -43,24 +69,11 @@
                     if (error !== null) { deferred.reject(error); }
                     else { deferred.resolve(apiRes); }
                   });
-
           return deferred.promise;
         };
 
-        return { getJournalEntries: getJournalEntries };
-      }
-    ]
-  );
-
-  spexieAppServices.factory(
-    'JournalEntry',
-    [
-    '$q',
-    'subledger',
-      function($q, subledger){
         var getJournalEntry = function(journalEntryId) {
           var deferred = $q.defer();
-
           subledger
             .organization(subledger.creds.org)
               .book(subledger.creds.book)
@@ -69,14 +82,48 @@
                     if (error !== null) { deferred.reject(error); }
                     else { deferred.resolve(apiRes); }
                   });
-
           return deferred.promise;
         };
 
-        return { getJournalEntry: getJournalEntry };
+        var getLines = function(journalEntryId, options) {
+          var deferred = $q.defer();
+          subledger
+            .organization(subledger.creds.org)
+              .book(subledger.creds.book)
+                .journalEntry(journalEntryId)
+                  .line()
+                    .get(options, function(error, apiRes){
+                      if (error !== null) { deferred.reject(error); }
+                      else { deferred.resolve(apiRes); }
+                    });
+          return deferred.promise;
+        };
+
+        var getLine = function(journalEntryId, lineId) {
+          var deferred = $q.defer();
+          subledger
+            .organization(subledger.creds.org)
+              .book(subledger.creds.book)
+                .journalEntry(journalEntryId)
+                  .line(lineId)
+                    .get(function(error, apiRes){
+                      if (error !== null) { deferred.reject(error); }
+                      else { deferred.resolve(apiRes); }
+                    });
+          return deferred.promise;
+        };
+
+
+        return {
+          getAccounts: getAccounts,
+          getAccount: getAccount,
+          getJournalEntries: getJournalEntries,
+          getJournalEntry: getJournalEntry,
+          getLines: getLines,
+          getLine: getLine
+        };
       }
     ]
   );
-
 
 })();
