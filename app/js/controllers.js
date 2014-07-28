@@ -28,7 +28,7 @@
       '$routeParams',
       function($scope, sledgerSvc, $routeParams){
         var actId;
-        if($scope.line){ actId = line.account; }
+        if($scope.line){ actId = $scope.line.account; }
         else { actId = $routeParams.accountId; }
 
         sledgerSvc.getAccount(actId).then(

@@ -21,9 +21,9 @@
       </colgroup>
       <tbody ng-controller="LinesCtrl as linesCtrl">
         <tr class="ember-view" ng-repeat="line in lines">
-          <td class="acc">
-            <a class="ember-view" href="#/account/{{line.account}}/lines">
-              {{line.account.description || line.account}}
+          <td class="acc" ng-controller="AccountCtrl as actCtrl">
+            <a class="ember-view" href="#/account/{{account.id}}/lines">
+              {{account.description || line.account}}
             </a>
           </td>
           <td class="description">
