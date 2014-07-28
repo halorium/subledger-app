@@ -12,22 +12,18 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/subledger.css"/>
+  <!-- <link rel="stylesheet" href="css/subledger.css"/> -->
   <link rel="stylesheet" href="css/app.css"/>
   <script src="js/vendor/subledger.min.js"></script>
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body ng-controller="appCtrl as app">
-  <!-- <div ng-controller="navCtrl" class="navigation"></div> -->
   <div class="view-container">
+    <div ng-include src="'partials/nav.html'"></div>
     <div ng-view class="view-frame"></div>
   </div>
 
-<!--   <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
- -->
+
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->

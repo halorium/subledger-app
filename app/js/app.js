@@ -21,7 +21,7 @@
       function($routeProvider) {
         $routeProvider.
           when('/', {
-            templateUrl: 'partials/home.html',
+            templateUrl: 'partials/main-content.html',
             controller: 'appCtrl'
           }).
           when('/journal_entries', {
