@@ -1,0 +1,220 @@
+* {
+  box-sizing: border-box; }
+
+html,
+body,
+.app,
+.app-body,
+.app-all-content,
+.app-main-content,
+.view-frame,
+.journal-entries,
+.index {
+  height: 100%;
+  overflow: hidden; }
+
+body {
+  padding-top: 50px;
+  padding-bottom: 60px;
+  font-family: 'PT Sans',sans-serif;
+  font-size: 12px;
+  line-height: 1.42857143;
+  color: #626468;
+  background-color: #e2e4e7; }
+
+.app-menu {
+  position: fixed;
+  top: 0;
+  height: 50px;
+  background-color: blue; }
+
+.infinite-scroll {
+  height: 100%;
+  overflow: scroll; }
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  background-color: green; }
+
+.app-menu .navbar-default {
+  background-color: #1e7c98;
+  border-color: #19657c; }
+
+.app-menu .navbar-default ul li a,
+.app-menu .navbar-default a {
+  color: white; }
+
+.app-footer .navbar-default {
+  background: transparent;
+  border: none; }
+
+.navbar-fixed-top, .app-menu {
+  top: 0;
+  border-width: 0 0 1px; }
+
+.container-fluid, .app-menu > div, .app-body, .app-footer > div {
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto; }
+
+.app-body .app-all-content .app-main-nav {
+  height: 100%;
+  float: left;
+  width: 25%;
+  overflow: hidden; }
+
+.app-body .app-all-content .app-main-nav {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-left: 0;
+  padding-right: 0; }
+
+.app-main-content {
+  height: 100%;
+  overflow: hidden; }
+
+.app-body .app-all-content .app-main-content {
+  float: left;
+  width: 75%; }
+
+.app-body .app-all-content .app-main-content {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 100%;
+  padding: 0;
+  background-color: white;
+  border: 1px solid #c3c3c3;
+  -webkit-box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15); }
+
+.app-footer {
+  border-top: 0;
+  line-height: 20px;
+  background-color: transparent;
+  display: block; }
+
+.navbar-fixed-bottom, .app-footer {
+  bottom: 0;
+  margin-bottom: 0;
+  border-width: 1px 0 0; }
+
+.navbar-fixed-top, .navbar-fixed-bottom, .app-menu, .app-footer {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030; }
+
+a {
+  color: #1e7c98;
+  text-decoration: none; }
+
+ul, ol {
+  margin-top: 0;
+  padding-left: 0; }
+
+ul {
+  list-style: none; }
+
+ul li.nav-item {
+  cursor: pointer;
+  color: #5e5e5e;
+  font-weight: 700;
+  font-family: 'PT Sans',sans-serif;
+  line-height: 42px;
+  padding: 0 0 0 10px;
+  text-shadow: #fff 0 1px;
+  box-shadow: 0 1px 1px 0 #fff;
+  border-bottom: 1px solid #c3c3c3; }
+
+ul li.nav-item:first-child {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px; }
+
+ul li.nav-item.active {
+  color: #1b6f8b;
+  background-color: #dbdee2; }
+
+ul li.nav-item:hover {
+  color: #1b6f8b;
+  text-decoration: underline;
+  background-color: #dbdee2; }
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 31px;
+  padding: 6px 12px;
+  font-size: 12px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; }
+
+aside, section {
+  display: block;
+  overflow: hidden; }
+
+.journal-entries .index > aside {
+  text-shadow: #fff 0 1px;
+  margin: 10px 10px 5px;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
+  border-color: #c3c3c3;
+  background-color: #fafafa;
+  border: 1px solid transparent;
+  border-radius: 4px; }
+
+.journal-entries .index > aside > div {
+  padding: 10px 15px; }
+
+.journal-entries .index > aside > div > div {
+  margin-left: -15px;
+  margin-right: -15px;
+  font-size: 1.1em;
+  font-weight: 700;
+  line-height: 30px; }
+
+.journal-entries .index > aside > div > div > div:nth-of-type(1) {
+  float: left;
+  width: 25%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.journal-entries .index > aside > div > div > div:nth-of-type(2) {
+  float: left;
+  width: 50%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.journal-entries .index > aside > div > div > div:nth-of-type(3) {
+  float: left;
+  width: 25%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px; }
+
+.journal-entry {
+  margin: 10px;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.15);
+  border-color: #c3c3c3;
+  background-color: #fafafa;
+  border: 1px solid transparent;
+  border-radius: 4px; }

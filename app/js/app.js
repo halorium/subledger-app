@@ -20,8 +20,8 @@
       '$routeProvider',
       function($routeProvider) {
         $routeProvider.
-          when('/', {
-            templateUrl: 'partials/main-content.html',
+          when('/login', {
+            templateUrl: 'partials/login.html',
             controller: 'appCtrl'
           }).
           when('/journal_entries', {
@@ -33,7 +33,7 @@
             controller: 'JournalEntryCtrl'
           }).
           otherwise({
-            redirectTo: '/'
+            redirectTo: '/login'
           }
         );
       }

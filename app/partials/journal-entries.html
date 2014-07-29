@@ -1,15 +1,11 @@
- <div class= "journal-entries">
+ <div class="journal-entries" ng-controller="JournalEntriesCtrl as jeCtrl">
     <div class="index">
 
       <aside>
         <div>
           <div>
-            <div>
-              Effective&nbsp;At
-            </div>
-            <div>
-              Description
-            </div>
+            <div>Effective&nbsp;At</div>
+            <div>Description</div>
             <div>
               <div class="btn-group pull-right">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -36,13 +32,6 @@
 
       <section class="infinite-scroll">
         <article class="journal-entry list-item" ng-repeat="journalEntry in journalEntries">
-        <!--   <p>JE: {{journalEntry.id}}</p>
-          <p>JE: {{journalEntry.book}}</p>
-          <p>JE: {{journalEntry.effective_at}}</p>
-          <p>JE: {{journalEntry.description}}</p>
-          <p>JE: {{journalEntry.reference}}</p>
-          <p>JE: {{journalEntry.version}}</p>
-         -->
          <a href="#/journal_entries/{{journalEntry.id}}">
           <section class="body">
             <div class="row">

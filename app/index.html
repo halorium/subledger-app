@@ -13,14 +13,28 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- <link rel="stylesheet" href="css/subledger.css"/> -->
-  <link rel="stylesheet" href="css/app.css"/>
+  <link rel="stylesheet" href="css/global.css"/>
   <script src="js/vendor/subledger.min.js"></script>
   <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body ng-controller="appCtrl as app">
-  <div class="view-container">
-    <div ng-include src="'partials/nav.html'"></div>
-    <div ng-view class="view-frame"></div>
+  <div class="app">
+    <div class="app-menu">
+      <div ng-include src="'partials/nav.html'" class="include"></div>
+    </div>
+    <div class="app-body">
+      <div class="app-all-content">
+        <div class="app-main-nav">
+          <div ng-include src="'partials/main-content-nav.html'" class="include"></div>
+        </div>
+        <div class="app-main-content">
+          <div ng-view class="view-frame"></div>
+        </div>
+      </div>
+    </div>
+    <div class="app-footer">
+      <div ng-include src="'partials/footer.html'" class="include"></div>
+    </div>
   </div>
 
 

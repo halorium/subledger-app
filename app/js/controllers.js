@@ -110,6 +110,13 @@
     [
       '$scope',
       function($scope) {
+        $scope.loggedIn = true;
+        $scope.logIn = function(){
+          $scope.loggedIn = true;
+        };
+        $scope.logOut = function(){
+          $scope.loggedIn = false;
+        };
       }
     ]
   );
