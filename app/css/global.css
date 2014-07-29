@@ -147,6 +147,17 @@ ul li.nav-item:hover {
   text-decoration: underline;
   background-color: #dbdee2; }
 
+.app-footer div .navbar-fixed-bottom div ul li a {
+  color: #5e5e5e;
+  font-weight: 700;
+  font-family: 'PT Sans',sans-serif; }
+
+.app-footer div .navbar-fixed-bottom div ul li a:hover {
+  color: #1b6f8b;
+  text-decoration: underline;
+  font-weight: 700;
+  font-family: 'PT Sans',sans-serif; }
+
 .form-control {
   display: block;
   width: 100%;
@@ -198,14 +209,6 @@ aside, section {
 .journal-entries .index > aside > div > div > div:nth-of-type(2) {
   float: left;
   width: 50%;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px; }
-
-.journal-entries .index > aside > div > div > div:nth-of-type(3) {
-  float: left;
-  width: 25%;
   position: relative;
   min-height: 1px;
   padding-left: 15px;

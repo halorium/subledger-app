@@ -1,4 +1,4 @@
- <div class="journal-entries" ng-controller="JournalEntriesCtrl as jeCtrl">
+ <div class="journal-entries" ng-controller="JournalEntriesCtrl as jeCtrl" ng-init="init()">
     <div class="index">
 
       <aside>
@@ -6,31 +6,18 @@
           <div>
             <div>Effective&nbsp;At</div>
             <div>Description</div>
-            <div>
-              <div class="btn-group pull-right">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  POSTED
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <button class="btn btn-link" data-ember-action="181">
-                      POSTED
-                    </button>
-                  </li>
-                  <li>
-                    <button class="btn btn-link" data-ember-action="182">
-                      POSTING
-                    </button>
-                  </li>
-                </ul>
-              </div>
+            <div ng-controller="selectCtrl">
+              <select class="form-control" ng-model="state" ng-options="type as type for type in states" ng-change="setState()">
+              </select>
             </div>
           </div>
         </div>
       </aside>
 
       <section class="infinite-scroll">
+        <div class="alert alert-warning no-results" ng-show="alert">
+          No Results Found
+        </div>
         <article class="journal-entry list-item" ng-repeat="journalEntry in journalEntries">
          <a href="#/journal_entries/{{journalEntry.id}}">
           <section class="body">

@@ -45,10 +45,26 @@
       '$scope',
       'sledgerSvc',
       function($scope, sledgerSvc){
-        sledgerSvc.getJournalEntries({state: 'posted'}).then(
-          function(apiRes){ $scope.journalEntries = apiRes.posted_journal_entries; },
-          function(error){ $scope.error = error; }
-        );
+        $scope.state = 'posted';
+        $scope.type = 'posted_journal_entries';
+        $scope.query = function(){
+          $scope.alert = false;
+          sledgerSvc.getJournalEntries({state: $scope.state}).then(
+            function(apiRes){
+              $scope.journalEntries = apiRes[$scope.type];
+              if($scope.journalEntries.length === 0){ $scope.alert = true; }
+            },
+            function(error){ $scope.error = error; }
+          );
+        };
+        $scope.init = function(){
+          $scope.query();
+        };
+        $scope.changeState = function(newState){
+          $scope.type = newState + '_journal_entries';
+          $scope.state = newState;
+          $scope.query();
+        };
       }
     ]
   );
@@ -117,9 +133,26 @@
         $scope.logOut = function(){
           $scope.loggedIn = false;
         };
+        $scope.alert = false;
       }
     ]
   );
+
+  spexieAppControllers.controller(
+    'selectCtrl',
+    [
+      '$scope',
+      function($scope) {
+        $scope.states = ['posted', 'posting', 'active', 'archived'];
+        $scope.state = 'posted';
+        $scope.setState = function(){
+          console.log($scope.state);
+          $scope.changeState($scope.state);
+        };
+      }
+    ]
+  );
+
 
     // .controller('jeCtrl', ['$scope', function($scope) {
     //   this.entries = [
