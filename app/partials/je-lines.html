@@ -1,5 +1,5 @@
 <section class="table">
-<!--   <table>
+  <table>
     <thead>
       <tr>
         <th class="acc">Account</th>
@@ -10,17 +10,8 @@
       </tr>
     </thead>
   </table>
- -->  <div>
+  <div>
     <table class="table table-striped">
-    <thead>
-      <tr>
-        <th class="acc">Account</th>
-        <th class="description">Description</th>
-        <th class="debit">Debit</th>
-        <th class="credit">Credit</th>
-        <th class="reference">REF</th>
-      </tr>
-    </thead>
       <colgroup>
         <col span="1" class="acc">
         <col span="1" class="description">
@@ -28,7 +19,7 @@
         <col span="1" class="credit">
         <col span="1" class="reference">
       </colgroup>
-      <tbody ng-controller="LinesCtrl as linesCtrl">
+      <tbody ng-controller="LinesCtrl as linesCtrl" ng-init="init(journalEntry.id)">
         <tr class="ember-view" ng-repeat="line in lines">
           <td class="acc" ng-controller="AccountCtrl as actCtrl" ng-init="init(line.account)">
             <a class="ember-view" href="#/account/{{account.id}}/lines">
@@ -56,10 +47,10 @@
           <th class="hidden-xs"></th>
           <th class="text-right">Total</th>
           <th class="debit">
-            {{jeBalance.debit_value.amount}}
+            {{journalEntry.debitValue}}
           </th>
           <th class="credit">
-            {{jeBalance.credit_value.amount}}
+            {{journalEntry.creditValue}}
           </th>
           <th>&nbsp;</th>
         </tr>

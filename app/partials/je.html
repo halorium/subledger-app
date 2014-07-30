@@ -1,0 +1,56 @@
+<!-- <article class="journal-entry list-item collapsed">
+  <header class="header">
+    <div class="row">
+      <div class="col-xs-9 col-md-11">
+      {{journalEntry.description}}
+      </div>
+      <div class="col-xs-3 col-md-1 text-right">
+        {{journalEntry.state}}
+      </div>
+    </div>
+  </header>
+  <section class="body">
+    {{journalEntry.effective_at}}
+  </section>
+  <div ng-include src="'partials/journal-entry-lines.html'"></div>
+</article>
+ -->
+
+
+<article class="journal-entry list-item"
+         ng-repeat="journalEntry in journalEntries">
+  <div ng-controller="JournalEntryCtrl as jeCtrl" ng-click="toggleView()">
+
+    <!-- <div ng-show="jeListing"> -->
+      <div class="col-xs-3 col-md-2">
+        <span class="time-ago" data-original-title="" title="">
+          {{journalEntry.effective_at}}
+        </span>
+      </div>
+      <div class="col-xs-6 col-md-9">
+        {{journalEntry.description}}
+      </div>
+      <div class="col-xs-3 col-md-1 text-right">
+        {{journalEntry.state}}
+      </div>
+    <!-- </div> -->
+
+<!--     <div ng-show="jeView">
+      <header class="header">
+        <div class="row">
+          <div class="col-xs-9 col-md-11">
+          {{journalEntry.description}}
+          </div>
+          <div class="col-xs-3 col-md-1 text-right">
+            {{journalEntry.state}}
+          </div>
+        </div>
+      </header>
+      <section class="body">
+        {{journalEntry.effective_at}}
+      </section>
+      <div ng-include src="'partials/journal-entry-lines.html'"></div>
+    </div>
+ -->
+</article>
+

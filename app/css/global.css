@@ -221,3 +221,33 @@ aside, section {
   background-color: #fafafa;
   border: 1px solid transparent;
   border-radius: 4px; }
+
+header.header.ng-scope {
+  cursor: pointer;
+  background-color: #fff;
+  background-image: none;
+  border-bottom: 1px solid #c3c3c3;
+  border-radius: 6px 6px 0 0;
+  padding: 30px 17px;
+  background-image: none; }
+
+section.body.ng-binding.ng-scope {
+  cursor: initial;
+  background-color: initial;
+  border-radius: initial;
+  padding: 0 15px;
+  background-image: none; }
+
+table {
+  margin-bottom: 0;
+  table-layout: fixed;
+  overflow-x: hidden;
+  width: 100%; }
+
+tr {
+  padding: 0 2px; }
+
+thead {
+  border-top: 1px solid #c3c3c3;
+  border-bottom: 1px solid #c3c3c3;
+  background-color: #fff; }

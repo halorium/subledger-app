@@ -1,0 +1,24 @@
+ <div class="journal-entries" ng-controller="JournalEntriesCtrl as jesCtrl" ng-init="init()">
+    <div class="index">
+
+      <aside>
+        <div>
+          <div>
+            <div>Effective&nbsp;At</div>
+            <div>Description</div>
+            <div ng-controller="selectCtrl">
+              <select class="form-control" ng-model="state" ng-options="type as type for type in states" ng-change="setState()">
+              </select>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="infinite-scroll">
+        <div class="alert alert-warning no-results" ng-show="alert">
+          No Results Found
+        </div>
+        <div ng-include src="'partials/journal-entry.html'"></div>
+      </section>
+    </div>
+  </div>

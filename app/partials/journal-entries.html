@@ -18,9 +18,9 @@
         <div class="alert alert-warning no-results" ng-show="alert">
           No Results Found
         </div>
-        <article class="journal-entry list-item" ng-repeat="journalEntry in journalEntries">
-         <a href="#/journal_entries/{{journalEntry.id}}">
-          <section class="body">
+        <article class="ember-view journal-entry list-item collapsed" ng-repeat="journalEntry in journalEntries">
+          <div ng-controller="JournalEntryCtrl as jeCtrl" ng-click="toggleView()">
+          <section class="body" ng-show="listing">
             <div class="row">
               <div class="col-xs-3 col-md-2">
                 <span class="time-ago" data-original-title="" title="">
@@ -35,7 +35,10 @@
               </div>
             </div>
           </section>
-        </a>
+          <section class="body" ng-show="!listing">
+            <div ng-include src="'partials/journal-entry.html'" class="include"></div>
+          </section>
+          </div>
         </article>
 
       </section>
