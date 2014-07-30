@@ -28,7 +28,7 @@
             templateUrl: 'partials/journal-entries.html',
             controller: 'JournalEntriesCtrl'
           }).
-          when('/journal_entries/:journalEntryId', {
+          when('/journal_entries/:jeId', {
             templateUrl: 'partials/journal-entry.html',
             controller: 'JournalEntryCtrl'
           }).
