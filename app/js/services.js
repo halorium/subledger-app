@@ -83,11 +83,11 @@
           return deferred.promise;
         };
 
-        var getJournalEntries = function(options) {
+        var getJournalEntries = function(bookId, options) {
           var deferred = $q.defer();
           subledger
             .organization(subledger.creds.org)
-              .book(subledger.creds.book)
+              .book(bookId)
                 .journalEntry()
                   .get(options, function(error, apiRes){
                     if (error !== null) { deferred.reject(error); }
@@ -96,12 +96,12 @@
           return deferred.promise;
         };
 
-        var getJournalEntry = function(journalEntryId) {
+        var getJournalEntry = function(bookId, jeId) {
           var deferred = $q.defer();
           subledger
             .organization(subledger.creds.org)
-              .book(subledger.creds.book)
-                .journalEntry(journalEntryId)
+              .book(bookId)
+                .journalEntry(jeId)
                   .get(function(error, apiRes){
                     if (error !== null) { deferred.reject(error); }
                     else { deferred.resolve(apiRes); }

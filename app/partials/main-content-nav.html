@@ -1,7 +1,12 @@
 <div class="main-content-nav">
   <ul>
     <li class="nav-item">
-      <select class="form-control">
+      <div ng-controller="BooksCtrl as bksCtrl" ng-init="init()">
+        <select class="form-control" ng-model="book" ng-options="book.description for book in books" ng-change="setBook()">
+        </select>
+      </div>
+
+<!--       <select class="form-control">
         <option value="5Wl1ONOulAcWydn9iThnbF">
           UNITS Lemonade Demo: 2014-07-24T01:56:35Z
         </option>
@@ -9,7 +14,7 @@
           USD Lemonade Demo: 2014-07-24T01:56:35Z
         </option>
       </select>
-    </li>
+ -->    </li>
 
     <li class="nav-item">
       <span class="glyphicon sl-refresh"></span> Activity Stream
