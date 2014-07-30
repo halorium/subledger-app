@@ -242,6 +242,54 @@ window.journalEntries = [
   );
 
   spexieAppControllers.controller(
+    'BooksCtrl',
+    [
+      '$scope',
+      'sledgerSvc',
+      function($scope, sledgerSvc){
+        $scope.state = $scope.state || 'active';
+        $scope.type = $scope.type || $scope.state + '_books';
+        $scope.query = function(options){
+          $scope.type = $scope.state + '_books';
+          options = options || {state: $scope.state};
+          sledgerSvc.getBooks(options).then(
+            function(apiRes){ $scope.books = apiRes[$scope.type]; },
+            function(error){ $scope.error = error; }
+          );
+        };
+        $scope.init = function(){
+          $scope.query();
+        };
+      }
+    ]
+  );
+
+  spexieAppControllers.controller(
+    'BookCtrl',
+    [
+      '$scope',
+      'sledgerSvc',
+      '$routeParams',
+      function($scope, sledgerSvc, $routeParams){
+        $scope.state = 'active';
+        $scope.type = $scope.state + '_book';
+        $scope.query = function(bookId){
+          bookId = bookId || $routeParams.bookId;
+          $scope.type = $scope.state + '_book';
+          sledgerSvc.getBook(bookId).then(
+            function(apiRes){ $scope.book = apiRes[$scope.type]; },
+            function(error){ $scope.error = error; }
+          );
+        };
+        $scope.init = function(bookId){
+          $scope.query(bookId);
+        };
+      }
+    ]
+  );
+
+
+  spexieAppControllers.controller(
     'AccountsCtrl',
     [
       '$scope',
@@ -298,15 +346,13 @@ window.journalEntries = [
         $scope.type = 'posted_journal_entries';
         $scope.query = function(){
           $scope.alert = false;
-          // sledgerSvc.getJournalEntries({state: $scope.state}).then(
-          //   function(apiRes){
-          //     $scope.journalEntries = apiRes[$scope.type];
-          //     if($scope.journalEntries.length === 0){ $scope.alert = true; }
-          //   },
-          //   function(error){ $scope.error = error; }
-          // );
-
-          $scope.journalEntries = window.journalEntries;
+          sledgerSvc.getJournalEntries({state: $scope.state}).then(
+            function(apiRes){
+              $scope.journalEntries = apiRes[$scope.type];
+              if($scope.journalEntries.length === 0){ $scope.alert = true; }
+            },
+            function(error){ $scope.error = error; }
+          );
         };
         $scope.init = function(){
           $scope.query();

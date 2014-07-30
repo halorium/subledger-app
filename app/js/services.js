@@ -33,6 +33,30 @@
     'subledger',
       function($q, subledger){
 
+        var getBooks = function(options) {
+          var deferred = $q.defer();
+          subledger
+            .organization(subledger.creds.org)
+              .book()
+                .get(options, function(error, apiRes){
+                  if (error !== null) { deferred.reject(error); }
+                  else { deferred.resolve(apiRes); }
+                });
+          return deferred.promise;
+        };
+
+        var getBook = function(bookId) {
+          var deferred = $q.defer();
+          subledger
+            .organization(subledger.creds.org)
+              .book(bookId)
+                .get(function(error, apiRes){
+                  if (error !== null) { deferred.reject(error); }
+                  else { deferred.resolve(apiRes); }
+                });
+          return deferred.promise;
+        };
+
         var getAccounts = function(options) {
           var deferred = $q.defer();
           subledger
@@ -128,6 +152,8 @@
 
 
         return {
+          getBooks: getBooks,
+          getBook: getBook,
           getAccounts: getAccounts,
           getAccount: getAccount,
           getJournalEntries: getJournalEntries,
