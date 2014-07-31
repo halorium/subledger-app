@@ -29,7 +29,8 @@
             controller: 'BooksCtrl'
           }).
           when('/journal_entries', {
-            templateUrl: 'partials/journal-entries.html',
+            // templateUrl: 'partials/journal-entries.html',
+            templateUrl: 'partials/jes.html',
             controller: 'JournalEntriesCtrl'
           }).
           when('/journal_entries/:jeId', {

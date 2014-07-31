@@ -1,0 +1,176 @@
+<div class="ember-view journal-entries" ng-controller="JournalEntriesCtrl as jeCtrl" ng-init="init()">
+  <div class="ember-view index">
+
+    <aside>
+      <div>
+        <div>
+          <div>
+            Effective&nbsp;At
+          </div>
+          <div>
+            Description
+          </div>
+          <div ng-controller="selectCtrl">
+            <select class="form-control" ng-model="state" ng-options="type as type for type in states" ng-change="setState()">
+            </select>
+          </div>
+
+<!--           <div>
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                POSTED
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <button class="btn btn-link">
+                    POSTED
+                  </button>
+                </li>
+                <li>
+                  <button class="btn btn-link">
+                    POSTING
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+ -->
+        </div>
+      </div>
+    </aside>
+
+    <section class="infinite-scroll">
+
+      <div class="loading-older hidden">
+        <div class="loading-more text-center">
+          <img src="assets/loader.gif" alt="Loading">
+        </div>
+      </div>
+
+      <div class="alert alert-warning no-results hidden">
+        No Results Found
+      </div>
+
+      <article class="ember-view journal-entry list-item" ng-controller="JournalEntryCtrl as jeCtrl" ng-click="toggleView()" ng-repeat="journalEntry in journalEntries">
+
+        <header class="header" ng-show="!listing">
+          <div class="row">
+            <div class="col-xs-9 col-md-11">
+              {{journalEntry.description}}
+            </div>
+            <div class="col-xs-3 col-md-1 text-right">
+              {{state}}
+            </div>
+          </div>
+        </header>
+
+        <section class="body" ng-show="listing">
+          <div class="row">
+            <div class="col-xs-3 col-md-2">
+              <span class="time-ago" data-original-title="" title="">
+                {{journalEntry.effective_at | date:'MM/dd/yyyy h:mma'}}
+              </span>
+            </div>
+            <div class="col-xs-6 col-md-9">
+              {{journalEntry.description}}
+            </div>
+            <div class="col-xs-3 col-md-1 text-right">
+              {{state}}
+            </div>
+          </div>
+        </section>
+
+        <section class="body" ng-show="!listing">
+          {{journalEntry.effective_at | date:'MM/dd/yyyy h:mma'}}
+        </section>
+
+        <section class="table" ng-show="!listing">
+
+<!--           <table>
+            <thead>
+              <tr>
+                <th class="col-md-3 acc">Account</th>
+                <th class="col-md-6 description">Description</th>
+                <th class="col-md-1 debit">Debit</th>
+                <th class="col-md-1 credit">Credit</th>
+                <th class="col-md-1 reference">REF</th>
+              </tr>
+            </thead>
+          </table>
+ -->
+          <div>
+            <table>
+
+              <colgroup>
+                <col class="col-md-3 acc">
+                <col class="col-md-6 description">
+                <col class="col-md-1 debit">
+                <col class="col-md-1 credit">
+                <col class="col-md-1 reference">
+              </colgroup>
+
+              <thead>
+                <tr>
+                  <th class="col-md-3 acc">Account</th>
+                  <th class="col-md-6 description">Description</th>
+                  <th class="col-md-1 debit">Debit</th>
+                  <th class="col-md-1 credit">Credit</th>
+                  <th class="col-md-1 reference">REF</th>
+                </tr>
+              </thead>
+
+              <tbody ng-controller="LinesCtrl as linesCtrl">
+
+                <tr class="ember-view" ng-repeat="line in lines">
+                  <td class="col-md-3 acc" ng-controller="AccountCtrl as actCtrl" ng-init="init(line.account)">
+                    <a class="ember-view" href="#/account/{{account.id}}/lines" title="{{account.description}}">
+                      {{account.description}}
+                    </a>
+                  </td>
+                  <td class="col-md-6 description">
+                    {{line.description}}
+                  </td>
+                  <td class="col-md-1 debit">
+                    {{linesCtrl.debit(line.value) | number:2}}
+                  </td>
+                  <td class="col-md-1 credit">
+                    {{linesCtrl.credit(line.value) | number:2}}
+                  </td>
+                  <td class="col-md-1 reference">
+                    <a href="{{line.reference}}" target="_blank">
+                      <img src="assets/icon-reference.png">
+                    </a>
+                  </td>
+                </tr>
+
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th class="hidden-xs"></th>
+                  <th class="text-right">Total</th>
+                  <th class="debit">
+                    {{jeBalance.debit_value.amount | number:2}}
+                  </th>
+                  <th class="credit">
+                    {{jeBalance.credit_value.amount | number:2}}
+                  </th>
+                  <th>
+                    &nbsp;
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </section>
+
+      </article>
+
+      <div class="loading-newer hidden">
+        <div class="loading-more text-center">
+          <img src="assets/loader.gif" alt="Loading">
+        </div>
+      </div>
+
+    </section>
+  </div>
+</div>
