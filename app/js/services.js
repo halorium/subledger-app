@@ -33,6 +33,13 @@
     'subledger',
       function($q, subledger){
 
+        var creds = {
+          key: '8bDALFFz8q7uvFNskbW9Kq',
+          secret: 'flWncmVODPlEUktLahThhW',
+          orgId: 'Mx88KmjlVja1i4EMXoBjs1',
+          bookId: '7klMwkWbY7HWR8qqq24W5U'
+        };
+
         var getBooks = function(options) {
           var deferred = $q.defer();
           subledger
@@ -57,11 +64,11 @@
           return deferred.promise;
         };
 
-        var getAccounts = function(options) {
+        var getAccounts = function(bookId, options) {
           var deferred = $q.defer();
           subledger
             .organization(subledger.creds.org)
-              .book(subledger.creds.book)
+              .book(bookId)
                 .account()
                   .get(options, function(error, apiRes){
                     if (error !== null) { deferred.reject(error); }
@@ -70,11 +77,11 @@
           return deferred.promise;
         };
 
-        var getAccount = function(accountId) {
+        var getAccount = function(bookId, accountId) {
           var deferred = $q.defer();
           subledger
             .organization(subledger.creds.org)
-              .book(subledger.creds.book)
+              .book(bookId)
                 .account(accountId)
                   .get(function(error, apiRes){
                     if (error !== null) { deferred.reject(error); }
@@ -109,12 +116,12 @@
           return deferred.promise;
         };
 
-        var getJournalEntryBalance = function(journalEntryId) {
+        var getJournalEntryBalance = function(bookId, jeId) {
           var deferred = $q.defer();
           subledger
             .organization(subledger.creds.org)
-              .book(subledger.creds.book)
-                .journalEntry(journalEntryId)
+              .book(bookId)
+                .journalEntry(jeId)
                   .balance(function(error, apiRes){
                     if (error !== null) { deferred.reject(error); }
                     else { deferred.resolve(apiRes); }
@@ -122,12 +129,12 @@
           return deferred.promise;
         };
 
-        var getLines = function(journalEntryId, options) {
+        var getLines = function(bookId, jeId, options) {
           var deferred = $q.defer();
           subledger
             .organization(subledger.creds.org)
-              .book(subledger.creds.book)
-                .journalEntry(journalEntryId)
+              .book(bookId)
+                .journalEntry(jeId)
                   .line()
                     .get(options, function(error, apiRes){
                       if (error !== null) { deferred.reject(error); }
@@ -136,12 +143,12 @@
           return deferred.promise;
         };
 
-        var getLine = function(journalEntryId, lineId) {
+        var getLine = function(bookId, jeId, lineId) {
           var deferred = $q.defer();
           subledger
             .organization(subledger.creds.org)
-              .book(subledger.creds.book)
-                .journalEntry(journalEntryId)
+              .book(bookId)
+                .journalEntry(jeId)
                   .line(lineId)
                     .get(function(error, apiRes){
                       if (error !== null) { deferred.reject(error); }
@@ -152,6 +159,7 @@
 
 
         return {
+          creds: creds,
           getBooks: getBooks,
           getBook: getBook,
           getAccounts: getAccounts,

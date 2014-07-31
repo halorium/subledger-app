@@ -54,6 +54,7 @@
             function(apiRes){
               $scope.books = apiRes[$scope.type];
               $scope.book = $scope.book || $scope.books[0];
+              sledgerSvc.creds.bookId = $scope.book.id;
               $rootScope.$broadcast('getJEs', $scope.book.id);
             },
             function(error){ $scope.error = error; }
@@ -64,6 +65,7 @@
         };
         $scope.setBook = function(bookId){
           console.log($scope.book);
+          sledgerSvc.creds.bookId = $scope.book.id;
           $rootScope.$broadcast('getJEs', $scope.book.id);
         };
       }
@@ -80,10 +82,14 @@
         $scope.state = 'active';
         $scope.type = $scope.state + '_book';
         $scope.query = function(bookId){
-          bookId = bookId || $routeParams.bookId;
+          // bookId = bookId || $routeParams.bookId;
+          bookId = bookId || sledgerSvc.creds.bookId;
           $scope.type = $scope.state + '_book';
           sledgerSvc.getBook(bookId).then(
-            function(apiRes){ $scope.book = apiRes[$scope.type]; },
+            function(apiRes){
+              $scope.book = apiRes[$scope.type];
+              sledgerSvc.creds.bookId = $scope.book.id;
+            },
             function(error){ $scope.error = error; }
           );
         };
@@ -103,16 +109,17 @@
       function($scope, sledgerSvc){
         $scope.state = $scope.state || 'active';
         $scope.type = $scope.type || $scope.state + '_accounts';
-        $scope.query = function(options){
+        $scope.query = function(bookId, options){
           $scope.type = $scope.state + '_accounts';
           options = options || {state: $scope.state};
-          sledgerSvc.getAccounts(options).then(
+          bookId = bookId || sledgerSvc.creds.bookId;
+          sledgerSvc.getAccounts(bookId, options).then(
             function(apiRes){ $scope.accounts = apiRes[$scope.type]; },
             function(error){ $scope.error = error; }
           );
         };
-        $scope.init = function(){
-          $scope.query();
+        $scope.init = function(bookId){
+          $scope.query(bookId);
         };
       }
     ]
@@ -128,10 +135,15 @@
         $scope.state = 'active';
         $scope.type = $scope.state + '_account';
         $scope.query = function(actId){
-          actId = actId || $routeParams.accountId;
+          var bookId = sledgerSvc.creds.bookId;
+          // actId = actId || $routeParams.accountId;
+          actId = actId || sledgerSvc.creds.accountId;
           $scope.type = $scope.state + '_account';
-          sledgerSvc.getAccount(actId).then(
-            function(apiRes){ $scope.account = apiRes[$scope.type]; },
+          sledgerSvc.getAccount(bookId, actId).then(
+            function(apiRes){
+              $scope.account = apiRes[$scope.type];
+              sledgerSvc.creds.accountId = $scope.account.id;
+            },
             function(error){ $scope.error = error; }
           );
         };
@@ -150,10 +162,11 @@
       function($scope, sledgerSvc){
         $scope.state = 'posted';
         $scope.type = 'posted_journal_entries';
-        $scope.query = function(bookId){
+        $scope.query = function(bookId, options){
           $scope.alert = false;
-          bookId = bookId || $scope.book.id;
-          sledgerSvc.getJournalEntries(bookId,{state: $scope.state}).then(
+          bookId = bookId || sledgerSvc.creds.bookId;
+          options = options || {state: $scope.state};
+          sledgerSvc.getJournalEntries(bookId, options).then(
             function(apiRes){
               $scope.journalEntries = apiRes[$scope.type];
               if($scope.journalEntries.length === 0){ $scope.alert = true; }
@@ -188,10 +201,13 @@
         $scope.type = $scope.state + '_journal_entry';
         $scope.query = function(jeId){
           $scope.type = $scope.state + '_journal_entry';
-          jeId = jeId || $routeParams.jeId;
-          bookId = $scope.book.id;
+          jeId = jeId || sledgerSvc.creds.journalEntryId;
+          var bookId = sledgerSvc.creds.bookId;
           sledgerSvc.getJournalEntry(bookId, jeId).then(
-            function(apiRes){ $scope.journalEntry = apiRes[$scope.type]; },
+            function(apiRes){
+              $scope.journalEntry = apiRes[$scope.type];
+              sledgerSvc.creds.journalEntryId = $scope.journalEntry.id;
+            },
             function(error){ $scope.error = error; }
           );
         };
@@ -199,15 +215,16 @@
           $scope.listing = !$scope.listing;
           if($scope.listing === false){
             $scope.$broadcast('getLines', $scope.journalEntry.id);
-            $scope.getBalance();
+            $scope.getBalance($scope.journalEntry.id);
           }
         };
         $scope.init = function(jeId){
           $scope.query(jeId);
         };
         $scope.getBalance = function(jeId){
+          var bookId = sledgerSvc.creds.bookId;
           jeId = jeId || $scope.journalEntry.id;
-          sledgerSvc.getJournalEntryBalance(jeId).then(
+          sledgerSvc.getJournalEntryBalance(bookId, jeId).then(
             function(apiRes){
               $scope.jeBalance = apiRes['balance'];
             },
@@ -228,10 +245,11 @@
         $scope.state = $scope.state || 'posted';
         $scope.type = $scope.type || $scope.state + '_lines';
         $scope.query = function(jeId, options){
-          jeId = jeId || $routeParams.jeId;
+          var bookId = sledgerSvc.creds.bookId;
+          jeId = jeId || sledgerSvc.creds.journalEntryId;
           options = options || {state: 'posted'};
           $scope.type = $scope.state + '_lines';
-          sledgerSvc.getLines(jeId, options).then(
+          sledgerSvc.getLines(bookId, jeId, options).then(
             function(apiRes){
               $scope.lines = apiRes[$scope.type];
             },
@@ -263,26 +281,18 @@
       'sledgerSvc',
       '$routeParams',
       function($scope, sledgerSvc, $routeParams){
-        sledgerSvc.getLine($routeParams.journalEntryId, $routeParams.lineId).then(
-          function(apiRes){ $scope.line = apiRes.posted_line; },
+        var bookId = sledgerSvc.creds.bookId;
+        var jeID = $scope.journalEntry.id || sledgerSvc.creds.journalEntryId;
+        var lineId = $scope.line.id || sledgerSvc.creds.lineId;
+        sledgerSvc.getLine(bookId, jeId, lineId).then(
+          function(apiRes){
+            $scope.line = apiRes.posted_line;
+            sledgerSvc.creds.lineId = $scope.line.id;
+          },
           function(error){ $scope.error = error; }
         );
       }
     ]
   );
-
-
-    // .controller('jeCtrl', ['$scope', function($scope) {
-    //   this.entries = [
-    //     {effectiveAt: 'a day ago', description: 'je one', posted: 'posted'},
-    //     {effectiveAt: 'a day ago', description: 'je two', posted: 'posted'}
-    //   ];
-    // }])
-    // .controller('MyCtrl1', ['$scope', function($scope) {
-
-    // }])
-    // .controller('MyCtrl2', ['$scope', function($scope) {
-
-    // }]);
 
 })();
