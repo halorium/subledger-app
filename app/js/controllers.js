@@ -241,7 +241,7 @@
         $scope.type = $scope.state + '_journal_entry';
         $scope.query = function(jeId){
           $scope.type = $scope.state + '_journal_entry';
-          jeId = jeId || sledgerSvc.creds.journalEntryId;
+          jeId = jeId || $routeParams.jeId || sledgerSvc.creds.journalEntryId;
           var bookId = sledgerSvc.creds.bookId;
           sledgerSvc.getJournalEntry(bookId, jeId).then(
             function(apiRes){

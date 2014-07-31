@@ -28,13 +28,13 @@
             templateUrl: 'partials/books.html',
             controller: 'BooksCtrl'
           }).
-          when('/journal_entries', {
+          when('/journal-entries', {
             // templateUrl: 'partials/journal-entries.html',
             templateUrl: 'partials/jes.html',
             controller: 'JournalEntriesCtrl'
           }).
-          when('/journal_entries/:jeId', {
-            templateUrl: 'partials/journal-entry.html',
+          when('/journal-entries/:jeId/lines', {
+            templateUrl: 'partials/je.html',
             controller: 'JournalEntryCtrl'
           }).
           when('/accounts', {

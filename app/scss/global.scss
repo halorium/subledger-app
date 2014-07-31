@@ -313,3 +313,60 @@ border-top: 1px solid #c3c3c3;
 border-bottom: 1px solid #c3c3c3;
 background-color: #fff;
 }
+
+header.header {
+  padding: 30px 17px;
+  background-color: #fff;
+  background-image: none;
+  border-bottom: 1px solid #c3c3c3;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+}
+
+section.body.ng-binding {
+background-color: initial;
+border-radius: initial;
+}
+
+section.table {
+
+}
+
+table.table {
+  margin-bottom: 0;
+}
+
+th.acc, th.description, th.debit, th.credit, th.reference {
+  padding: 5px;
+}
+
+tr:nth-child(odd)>td {
+  background-image: url(background-dark.jpg);
+}
+
+th.reference {
+  width: 30px;
+  text-align: center;
+}
+
+td.col-md-6.description, th.col-md-6.description {
+  padding: 5px;
+  width: 40%;
+}
+td.col-md-3.acc, th.col-md-3.acc{
+  padding: 5px;
+  width: 30%;
+}
+td.col-md-1.debit, th.col-md-1.debit {
+  padding: 5px;
+  width: 10%;
+}
+td.col-md-1.credit, th.col-md-1.credit {
+  padding: 5px;
+  width: 10%;
+}
+td.col-md-1.reference, th.col-md-1.reference {
+  padding: 5px;
+  width: 10%;
+  text-align: center;
+}
