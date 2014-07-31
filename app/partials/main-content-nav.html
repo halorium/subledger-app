@@ -5,31 +5,18 @@
         <select class="form-control" ng-model="book" ng-options="book.description for book in books" ng-change="setBook()">
         </select>
       </div>
-
-<!--       <select class="form-control">
-        <option value="5Wl1ONOulAcWydn9iThnbF">
-          UNITS Lemonade Demo: 2014-07-24T01:56:35Z
-        </option>
-        <option value="7klMwkWbY7HWR8qqq24W5U">
-          USD Lemonade Demo: 2014-07-24T01:56:35Z
-        </option>
-      </select>
- -->    </li>
-
-    <li class="nav-item">
-      <span class="glyphicon sl-refresh"></span> Activity Stream
     </li>
 
     <li class="nav-item">
-      <span class="glyphicon sl-entry"></span> Accounts
+      <a href="#/journal_entries">
+        <span class="glyphicon sl-refresh"></span> Activity Stream
+      </a>
     </li>
 
     <li class="nav-item">
-      <span class="glyphicon sl-entries"></span> Reports
-    </li>
-
-    <li class="nav-item">
-      <span class="glyphicon glyphicon-edit"></span> Create Journal Entry
+      <a href="#/accounts">
+        <span class="glyphicon sl-entry"></span> Accounts
+      </a>
     </li>
   </ul>
 </div>

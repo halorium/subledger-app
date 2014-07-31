@@ -1,0 +1,84 @@
+<article class="ember-view account" ng-controller="AccountCtrl as actCtrl" ng-init="init()">
+  <section class="ember-view account-lines">
+    <header>
+      <h3>
+        {{account.description}}
+        <a class="ember-view pull-right" href="#/account/{{account.id}}/chart">
+          <img src="assets/icon-chart.png">
+        </a>
+      </h3>
+    </header>
+    <section class="lines" ng-controller="AccountLinesCtrl as actLinesCtrl" ng-init="init()">
+      <table>
+        <thead>
+          <tr>
+            <th class="date">Date</th>
+            <th class="description">Description</th>
+            <th class="debit">Debit</th>
+            <th class="credit">Credit</th>
+            <th class="balance">Balance</th>
+            <th class="reference">Ref</th>
+            <th class="je">JE</th>
+          </tr>
+        </thead>
+      </table>
+      <div class="infinite-scroll">
+        <table>
+          <colgroup><col span="1" class="date">
+            <col span="1" class="description">
+            <col span="1" class="debit">
+            <col span="1" class="credit">
+            <col span="1" class="balance">
+            <col span="1" class="reference">
+            <col span="1" class="je">
+          </colgroup>
+          <tbody>
+<!--             <tr class="loading-older">
+              <td colspan="7">
+                <div class="loading-more text-center">
+                  <img src="assets/loader.gif" alt="Loading">
+                </div>
+              </td>
+            </tr>
+ -->            <tr class="ember-view" ng-repeat="line in actLines">
+              <td class="date">
+                <span class="hidden-xs">
+                  {{line.effective_at | date:'MM/dd/yyyy h:mma'}}
+                </span>
+              </td>
+              <td class="description">
+                {{line.description}}
+              </td>
+              <td class="debit">
+                {{actLinesCtrl.debit(line.value) | number:2}}
+              </td>
+              <td class="credit">
+                {{actLinesCtrl.credit(line.value) | number:2}}
+              </td>
+              <td class="balance">
+                {{line.balance.value.amount | number:2}}
+              </td>
+              <td class="reference">
+                <a href="{{line.reference}}" target="_blank">
+                  <img src="assets/icon-reference.png">
+                </a>
+              </td>
+              <td class="je">
+                <a class="ember-view" href="#/journal-entry/{{line.journal_entry}}/lines">
+                  <img src="assets/icon-journal-entry.png">
+                </a>
+              </td>
+            </tr>
+<!--             <tr class="loading-newer">
+              <td colspan="7">
+                <div class="loading-more text-center">
+                  <img src="assets/loader.gif" alt="Loading">
+                </div>
+              </td>
+            </tr>
+ -->          </tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+</article>

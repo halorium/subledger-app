@@ -24,6 +24,10 @@
             templateUrl: 'partials/login.html',
             controller: 'appCtrl'
           }).
+          when('/books', {
+            templateUrl: 'partials/books.html',
+            controller: 'BooksCtrl'
+          }).
           when('/journal_entries', {
             templateUrl: 'partials/journal-entries.html',
             controller: 'JournalEntriesCtrl'
@@ -32,8 +36,17 @@
             templateUrl: 'partials/journal-entry.html',
             controller: 'JournalEntryCtrl'
           }).
+          when('/accounts', {
+            templateUrl: 'partials/accounts.html',
+            controller: 'AccountsCtrl'
+          }).
+          when('/accounts/:actId/lines', {
+            templateUrl: 'partials/account.html',
+            controller: 'AccountCtrl'
+          }).
           otherwise({
-            redirectTo: '/login'
+            templateUrl: 'partials/not-found.html',
+            controller: 'appCtrl'
           }
         );
       }

@@ -41,10 +41,12 @@
   spexieAppControllers.controller(
     'BooksCtrl',
     [
+      '$route',
+      '$location',
       '$rootScope',
       '$scope',
       'sledgerSvc',
-      function($rootScope, $scope, sledgerSvc){
+      function($route, $location, $rootScope, $scope, sledgerSvc){
         $scope.state = 'active';
         $scope.type = $scope.state + '_books';
         $scope.query = function(options){
@@ -66,7 +68,11 @@
         $scope.setBook = function(bookId){
           console.log($scope.book);
           sledgerSvc.creds.bookId = $scope.book.id;
-          $rootScope.$broadcast('getJEs', $scope.book.id);
+          var root_path = $route.current.$$route.originalPath.match(/[^\/]+/)[0];
+          root_path = "/" + root_path;
+          $location.path(root_path);
+          $route.reload();
+          // $rootScope.$broadcast('getJEs', $scope.book.id);
         };
       }
     ]
@@ -136,8 +142,7 @@
         $scope.type = $scope.state + '_account';
         $scope.query = function(actId){
           var bookId = sledgerSvc.creds.bookId;
-          // actId = actId || $routeParams.accountId;
-          actId = actId || sledgerSvc.creds.accountId;
+          actId = actId || $routeParams.actId || sledgerSvc.creds.accountId;
           $scope.type = $scope.state + '_account';
           sledgerSvc.getAccount(bookId, actId).then(
             function(apiRes){
@@ -153,6 +158,41 @@
       }
     ]
   );
+
+  spexieAppControllers.controller(
+    'AccountLinesCtrl',
+    [
+      '$scope',
+      'sledgerSvc',
+      '$routeParams',
+      function($scope, sledgerSvc, $routeParams){
+        $scope.state = 'posted';
+        $scope.type = $scope.state + '_lines';
+        $scope.query = function(actId, options){
+          var bookId = sledgerSvc.creds.bookId;
+          options = options || {state: $scope.state, action: 'before', effective_at: new Date().toISOString()};
+          actId = actId || $routeParams.actId || sledgerSvc.creds.accountId;
+          $scope.type = $scope.state + '_lines';
+          sledgerSvc.getAccountLines(bookId, actId, options).then(
+            function(apiRes){
+              $scope.actLines = apiRes[$scope.type];
+            },
+            function(error){ $scope.error = error; }
+          );
+        };
+        $scope.init = function(actId){
+          $scope.query(actId);
+        };
+        this.credit = function(value){
+          if(value.type === 'credit'){ return value.amount; }
+        };
+        this.debit = function(value){
+          if(value.type === 'debit'){ return value.amount; }
+        };
+      }
+    ]
+  );
+
 
   spexieAppControllers.controller(
     'JournalEntriesCtrl',

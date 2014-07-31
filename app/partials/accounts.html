@@ -1,0 +1,29 @@
+<div class="ember-view accounts" ng-controller="AccountsCtrl as actsCtrl" ng-init="init()">
+  <div class="ember-view index">
+    <section>
+      <div>
+        <div class="alert alert-warning no-results hidden">
+          No Results Found
+        </div>
+        <div class="items">
+
+          <div class="ember-view panel panel-default item hover-highlight" ng-repeat="account in accounts">
+            <a href="#/accounts/{{account.id}}/lines">
+            <div class="panel-body panel-body-white clickable">
+              <div class="row">
+                <div class="col-xs-9 col-md-10 description">
+                  {{account.description}}
+                </div>
+                <div class="col-xs-3 col-md-2 text-right balance">
+                  {{account.balance}}
+                </div>
+              </div>
+            </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -90,6 +90,20 @@
           return deferred.promise;
         };
 
+        var getAccountLines = function(bookId, actId, options) {
+          var deferred = $q.defer();
+          subledger
+            .organization(subledger.creds.org)
+              .book(bookId)
+                .account(actId)
+                  .line()
+                    .get(options, function(error, apiRes){
+                      if (error !== null) { deferred.reject(error); }
+                      else { deferred.resolve(apiRes); }
+                    });
+          return deferred.promise;
+        };
+
         var getJournalEntries = function(bookId, options) {
           var deferred = $q.defer();
           subledger
@@ -164,6 +178,7 @@
           getBook: getBook,
           getAccounts: getAccounts,
           getAccount: getAccount,
+          getAccountLines: getAccountLines,
           getJournalEntries: getJournalEntries,
           getJournalEntry: getJournalEntry,
           getJournalEntryBalance: getJournalEntryBalance,

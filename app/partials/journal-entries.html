@@ -1,4 +1,4 @@
- <div class="journal-entries" ng-controller="JournalEntriesCtrl as jeCtrl">
+ <div class="journal-entries" ng-controller="JournalEntriesCtrl as jeCtrl" ng-init="init()">
     <div class="index">
 
       <aside>
@@ -24,14 +24,14 @@
             <div class="row">
               <div class="col-xs-3 col-md-2">
                 <span class="time-ago" data-original-title="" title="">
-                  {{journalEntry.effective_at}}
+                  {{journalEntry.effective_at | date:'MM/dd/yyyy h:mma'}}
                 </span>
               </div>
               <div class="col-xs-6 col-md-9">
                 {{journalEntry.description}}
               </div>
               <div class="col-xs-3 col-md-1 text-right">
-                {{journalEntry.book}}
+                {{journalEntry.id}}
               </div>
             </div>
           </section>

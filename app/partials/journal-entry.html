@@ -1,33 +1,14 @@
-  <header class="header">
-    <div class="row">
-      <div class="col-xs-9 col-md-11">
-      {{journalEntry.description}}
-      </div>
-      <div class="col-xs-3 col-md-1 text-right">
-        {{journalEntry.state}}
-      </div>
+<header class="header">
+  <div class="row">
+    <div class="col-xs-9 col-md-11">
+    {{journalEntry.description}}
     </div>
-  </header>
-  <section class="body">
-    {{journalEntry.effective_at}}
-  </section>
-  <div ng-include src="'partials/journal-entry-lines.html'"></div>
-
-
-<!-- <article class="ember-view journal-entry list-item collapsed">
-  <header class="header">
-    <div class="row">
-      <div class="col-xs-9 col-md-11">
-      {{journalEntry.description}}
-      </div>
-      <div class="col-xs-3 col-md-1 text-right">
-        {{journalEntry.state}}
-      </div>
+    <div class="col-xs-3 col-md-1 text-right">
+      {{journalEntry.state}}
     </div>
-  </header>
-  <section class="body">
-    {{journalEntry.effective_at}}
-  </section>
-  <div ng-include src="'partials/journal-entry-lines.html'"></div>
-</article>
- -->
+  </div>
+</header>
+<section class="body">
+  {{journalEntry.effective_at}}
+</section>
+<div ng-include src="'partials/journal-entry-lines.html'"></div>

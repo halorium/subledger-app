@@ -39,10 +39,10 @@
             {{line.description}}
           </td>
           <td class="debit">
-            {{linesCtrl.debit(line.value)}}
+            {{linesCtrl.debit(line.value) | number:2}}
           </td>
           <td class="credit">
-            {{linesCtrl.credit(line.value)}}
+            {{linesCtrl.credit(line.value) | number:2}}
           </td>
           <td class="reference">
             <a href="{{line.reference}}" target="_blank">
@@ -56,10 +56,10 @@
           <th class="hidden-xs"></th>
           <th class="text-right">Total</th>
           <th class="debit">
-            {{jeBalance.debit_value.amount}}
+            {{jeBalance.debit_value.amount | number:2}}
           </th>
           <th class="credit">
-            {{jeBalance.credit_value.amount}}
+            {{jeBalance.credit_value.amount | number:2}}
           </th>
           <th>&nbsp;</th>
         </tr>
