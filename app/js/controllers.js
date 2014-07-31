@@ -263,13 +263,17 @@
         };
         $scope.getBalance = function(jeId){
           var bookId = sledgerSvc.creds.bookId;
-          jeId = jeId || $scope.journalEntry.id;
+          jeId = jeId || $routeParams.jeId || sledgerSvc.creds.journalEntryId;
           sledgerSvc.getJournalEntryBalance(bookId, jeId).then(
             function(apiRes){
               $scope.jeBalance = apiRes['balance'];
             },
             function(error){ $scope.error = error; }
           );
+        };
+        $scope.initBalance = function(jeId){
+          $scope.query(jeId);
+          $scope.getBalance(jeId);
         };
       }
     ]
@@ -286,7 +290,7 @@
         $scope.type = $scope.type || $scope.state + '_lines';
         $scope.query = function(jeId, options){
           var bookId = sledgerSvc.creds.bookId;
-          jeId = jeId || sledgerSvc.creds.journalEntryId;
+          jeId = jeId || $routeParams.jeId || sledgerSvc.creds.journalEntryId;
           options = options || {state: 'posted'};
           $scope.type = $scope.state + '_lines';
           sledgerSvc.getLines(bookId, jeId, options).then(

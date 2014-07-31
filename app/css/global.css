@@ -297,3 +297,6 @@ td.col-md-1.reference, th.col-md-1.reference {
   padding: 5px;
   width: 10%;
   text-align: center; }
+
+.journal-entries .index > section.infinite-scroll {
+  height: 100%; }

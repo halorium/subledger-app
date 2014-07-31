@@ -1,85 +1,93 @@
-<article class="ember-view journal-entry list-item" ng-controller="JournalEntryCtrl as jeCtrl" init="init()">
+<div class="ember-view journal-entries" ng-controller="JournalEntryCtrl as jeCtrl" ng-init="initBalance()">
+  <div class="ember-view index">
 
-  <header class="header">
-    <div class="row">
-      <div class="col-xs-9 col-md-11">
-        {{journalEntry.description}}
-      </div>
-      <div class="col-xs-3 col-md-1 text-right">
-        {{state}}
-      </div>
-    </div>
-  </header>
+    <section class="infinite-scroll">
 
-  <section class="body">
-    {{journalEntry.effective_at | date:'MM/dd/yyyy h:mma'}}
-  </section>
+      <article class="ember-view journal-entry list-item">
 
-  <section class="table">
+        <header class="header">
+          <div class="row">
+            <div class="col-xs-9 col-md-11">
+              {{journalEntry.description}}
+            </div>
+            <div class="col-xs-3 col-md-1 text-right">
+              {{state}}
+            </div>
+          </div>
+        </header>
 
-    <div>
-      <table>
+        <section class="body">
+          {{journalEntry.effective_at | date:'MM/dd/yyyy h:mma'}}
+        </section>
 
-        <colgroup>
-          <col class="col-md-3 acc">
-          <col class="col-md-6 description">
-          <col class="col-md-1 debit">
-          <col class="col-md-1 credit">
-          <col class="col-md-1 reference">
-        </colgroup>
+        <section class="table">
 
-        <thead>
-          <tr>
-            <th class="col-md-3 acc">Account</th>
-            <th class="col-md-6 description">Description</th>
-            <th class="col-md-1 debit">Debit</th>
-            <th class="col-md-1 credit">Credit</th>
-            <th class="col-md-1 reference">REF</th>
-          </tr>
-        </thead>
+          <div>
+            <table>
 
-        <tbody ng-controller="LinesCtrl as linesCtrl">
+              <colgroup>
+                <col class="col-md-3 acc">
+                <col class="col-md-6 description">
+                <col class="col-md-1 debit">
+                <col class="col-md-1 credit">
+                <col class="col-md-1 reference">
+              </colgroup>
 
-          <tr class="ember-view" ng-repeat="line in lines">
-            <td class="col-md-3 acc" ng-controller="AccountCtrl as actCtrl" ng-init="init(line.account)">
-              <a class="ember-view" href="#/account/{{account.id}}/lines" title="{{account.description}}">
-                {{account.description}}
-              </a>
-            </td>
-            <td class="col-md-6 description">
-              {{line.description}}
-            </td>
-            <td class="col-md-1 debit">
-              {{linesCtrl.debit(line.value) | number:2}}
-            </td>
-            <td class="col-md-1 credit">
-              {{linesCtrl.credit(line.value) | number:2}}
-            </td>
-            <td class="col-md-1 reference">
-              <a href="{{line.reference}}" target="_blank">
-                <img src="assets/icon-reference.png">
-              </a>
-            </td>
-          </tr>
+              <thead>
+                <tr>
+                  <th class="col-md-3 acc">Account</th>
+                  <th class="col-md-6 description">Description</th>
+                  <th class="col-md-1 debit">Debit</th>
+                  <th class="col-md-1 credit">Credit</th>
+                  <th class="col-md-1 reference">REF</th>
+                </tr>
+              </thead>
 
-        </tbody>
-        <tfoot>
-          <tr>
-            <th class="hidden-xs"></th>
-            <th class="text-right">Total</th>
-            <th class="debit">
-              {{jeBalance.debit_value.amount | number:2}}
-            </th>
-            <th class="credit">
-              {{jeBalance.credit_value.amount | number:2}}
-            </th>
-            <th>
-              &nbsp;
-            </th>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-  </section>
+              <tbody ng-controller="LinesCtrl as linesCtrl" ng-init="init(journalEntry.id)">
 
-</article>
+                <tr class="ember-view" ng-repeat="line in lines">
+                  <td class="col-md-3 acc" ng-controller="AccountCtrl as actCtrl" ng-init="init(line.account)">
+                    <a class="ember-view" href="#/account/{{account.id}}/lines" title="{{account.description}}">
+                      {{account.description}}
+                    </a>
+                  </td>
+                  <td class="col-md-6 description">
+                    {{line.description}}
+                  </td>
+                  <td class="col-md-1 debit">
+                    {{linesCtrl.debit(line.value) | number:2}}
+                  </td>
+                  <td class="col-md-1 credit">
+                    {{linesCtrl.credit(line.value) | number:2}}
+                  </td>
+                  <td class="col-md-1 reference">
+                    <a href="{{line.reference}}" target="_blank">
+                      <img src="assets/icon-reference.png">
+                    </a>
+                  </td>
+                </tr>
+
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th class="hidden-xs"></th>
+                  <th class="text-right">Total</th>
+                  <th class="debit">
+                    {{jeBalance.debit_value.amount | number:2}}
+                  </th>
+                  <th class="credit">
+                    {{jeBalance.credit_value.amount | number:2}}
+                  </th>
+                  <th>
+                    &nbsp;
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </section>
+
+      </article>
+    </section>
+  </div>
+</div>
