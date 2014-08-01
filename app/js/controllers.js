@@ -187,6 +187,7 @@
         $scope.render = function(actLines){
             var categories = [];
             var data = [];
+            var startDate = actLines[actLines.length - 1].effective_at;
 
             for(var i = actLines.length - 1; i >= 0; i--){
               categories.push(actLines[i].effective_at);
@@ -200,11 +201,23 @@
                           type: 'line'
                        },
                 title: {  text: 'Account Balance' },
-                xAxis: {  categories: categories },
+                // xAxis: {  categories: categories },
+                xAxis: { type: 'datetime',
+                         dateTimeLabelFormats: {
+                            millisecond: '%H:%M:%S.%L',
+                            second: '%H:%M:%S',
+                            minute: '%H:%M',
+                            hour: '%H:%M',
+                            day: '%e. %b',
+                            week: '%e. %b',
+                            month: '%b \'%y',
+                            year: '%Y'
+                         }},
                 yAxis: {  title: { text: 'Balance' } },
                 series: [ {
-                            name: 'Balance',
-                            data: data
+                            data: data,
+                            pointStart: Date.parse(startDate),
+                            pointInterval: 24 * 3600 * 1000
                            }
                         ]
               });
