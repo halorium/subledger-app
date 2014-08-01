@@ -160,6 +160,60 @@
   );
 
   spexieAppControllers.controller(
+    'AccountChartCtrl',
+    [
+      '$scope',
+      'sledgerSvc',
+      '$routeParams',
+      function($scope, sledgerSvc, $routeParams){
+        $scope.state = 'posted';
+        $scope.type = $scope.state + '_lines';
+        $scope.query = function(actId, options){
+          var bookId = sledgerSvc.creds.bookId;
+          options = options || {state: $scope.state, action: 'before', effective_at: new Date().toISOString()};
+          actId = actId || $routeParams.actId || sledgerSvc.creds.accountId;
+          $scope.type = $scope.state + '_lines';
+          sledgerSvc.getAccountLines(bookId, actId, options).then(
+            function(apiRes){
+              $scope.actLines = apiRes[$scope.type];
+              $scope.render($scope.actLines);
+            },
+            function(error){ $scope.error = error; }
+          );
+        };
+        $scope.init = function(){
+          $scope.query();
+        };
+        $scope.render = function(actLines){
+            var categories = [];
+            var data = [];
+
+            for(var i = actLines.length - 1; i >= 0; i--){
+              categories.push(actLines[i].effective_at);
+              data.push( parseFloat( actLines[i].balance.value.amount ) );
+            }
+
+            $scope.actChart = new Highcharts.Chart(
+              {
+                chart: {
+                          renderTo: 'container',
+                          type: 'line'
+                       },
+                title: {  text: 'Account Balance' },
+                xAxis: {  categories: categories },
+                yAxis: {  title: { text: 'Balance' } },
+                series: [ {
+                            name: 'Balance',
+                            data: data
+                           }
+                        ]
+              });
+        };
+      }
+    ]
+  );
+
+  spexieAppControllers.controller(
     'AccountLinesCtrl',
     [
       '$scope',

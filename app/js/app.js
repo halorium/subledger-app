@@ -45,6 +45,10 @@
             templateUrl: 'partials/account.html',
             controller: 'AccountCtrl'
           }).
+          when('/accounts/:actId/chart', {
+            templateUrl: 'partials/account-chart.html',
+            controller: 'AccountChartCtrl'
+          }).
           otherwise({
             templateUrl: 'partials/not-found.html',
             controller: 'appCtrl'
