@@ -233,16 +233,24 @@
       'sledgerSvc',
       '$routeParams',
       function($scope, sledgerSvc, $routeParams){
+        $scope.infiniteScrollReady = false;
         $scope.state = 'posted';
         $scope.type = $scope.state + '_lines';
+        $scope.actLines = [];
         $scope.query = function(actId, options){
+          $scope.loading = true;
           var bookId = sledgerSvc.creds.bookId;
           options = options || {state: $scope.state, action: 'before', effective_at: new Date().toISOString()};
           actId = actId || $routeParams.actId || sledgerSvc.creds.accountId;
           $scope.type = $scope.state + '_lines';
           sledgerSvc.getAccountLines(bookId, actId, options).then(
             function(apiRes){
-              $scope.actLines = apiRes[$scope.type];
+              $scope.infiniteScrollReady = true;
+              $scope.actLines = $scope.actLines.concat(apiRes[$scope.type]);
+              if ($scope.actLines.length >= 100) {
+                $scope.actLines.splice(0, 25);
+              }
+              $scope.loading = false;
             },
             function(error){ $scope.error = error; }
           );
@@ -255,6 +263,11 @@
         };
         this.debit = function(value){
           if(value.type === 'debit'){ return value.amount; }
+        };
+        $scope.getMoreLines = function(actId){
+          var lastLineId = $scope.actLines[$scope.actLines.length - 1].id;
+          console.log("lastLineId", lastLineId);
+          $scope.query(actId, {state: $scope.state, action: 'following', id: lastLineId });
         };
       }
     ]

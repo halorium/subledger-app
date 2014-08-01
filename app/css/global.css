@@ -30,7 +30,8 @@ body {
 
 .infinite-scroll {
   height: 100%;
-  overflow: scroll; }
+  overflow: scroll;
+  overflow-y: auto; }
 
 .app-footer {
   position: fixed;

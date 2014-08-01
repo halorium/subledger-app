@@ -11,7 +11,8 @@
       'spexieApp.filters',
       'spexieApp.services',
       'spexieApp.directives',
-      'spexieApp.controllers'
+      'spexieApp.controllers',
+      'infinite-scroll'
     ]
   );
 
