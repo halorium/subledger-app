@@ -50,6 +50,10 @@
             templateUrl: 'partials/account-chart.html',
             controller: 'AccountChartCtrl'
           }).
+          when('/', {
+            templateUrl: 'partials/home.html',
+            controller: 'appCtrl'
+          }).
           otherwise({
             templateUrl: 'partials/not-found.html',
             controller: 'appCtrl'
