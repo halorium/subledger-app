@@ -3,7 +3,7 @@
 /* jasmine specs for filters go here */
 
 describe('filter', function() {
-  beforeEach(module('spexieApp.filters'));
+  beforeEach(module('subledgerApp.filters'));
 
 
   describe('interpolate', function() {

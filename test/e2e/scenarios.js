@@ -2,7 +2,7 @@
 
 /* https://github.com/angular/protractor/blob/master/docs/getting-started.md */
 
-describe('spexieApp', function() {
+describe('subledgerApp', function() {
 
   browser.get('index.html');
 

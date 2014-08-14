@@ -4,9 +4,9 @@
 
   /* Controllers */
 
-  var spexieAppControllers = angular.module('spexieApp.controllers', []);
+  var subledgerAppControllers = angular.module('subledgerApp.controllers', []);
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'appCtrl',
     [
       '$scope',
@@ -23,7 +23,7 @@
     ]
   );
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'selectCtrl',
     [
       '$scope',
@@ -38,7 +38,7 @@
     ]
   );
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'BooksCtrl',
     [
       '$route',
@@ -78,7 +78,7 @@
     ]
   );
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'BookCtrl',
     [
       '$scope',
@@ -107,7 +107,7 @@
   );
 
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'AccountsCtrl',
     [
       '$scope',
@@ -131,7 +131,7 @@
     ]
   );
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'AccountCtrl',
     [
       '$scope',
@@ -159,7 +159,7 @@
     ]
   );
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'AccountChartCtrl',
     [
       '$scope',
@@ -226,7 +226,7 @@
     ]
   );
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'AccountLinesCtrl',
     [
       '$scope',
@@ -274,7 +274,7 @@
   );
 
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'JournalEntriesCtrl',
     [
       '$scope',
@@ -309,7 +309,7 @@
     ]
   );
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'JournalEntryCtrl',
     [
       '$scope',
@@ -359,7 +359,7 @@
     ]
   );
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'LinesCtrl',
     [
       '$scope',
@@ -398,7 +398,7 @@
     ]
   );
 
-  spexieAppControllers.controller(
+  subledgerAppControllers.controller(
     'LineCtrl',
     [
       '$scope',

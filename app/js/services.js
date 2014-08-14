@@ -6,9 +6,9 @@
 
   // Demonstrate how to register services
   // In this case it is a simple value service.
-  var spexieAppServices = angular.module('spexieApp.services', ['ngResource']);
+  var subledgerAppServices = angular.module('subledgerApp.services', ['ngResource']);
 
-  spexieAppServices.value('version', '0.1');
+  subledgerAppServices.value('version', '0.1');
 
   var subledger = new Subledger();
 
@@ -24,9 +24,9 @@
 
   subledger.creds = creds;
 
-  spexieAppServices.value('subledger', subledger);
+  subledgerAppServices.value('subledger', subledger);
 
-  spexieAppServices.factory(
+  subledgerAppServices.factory(
     'sledgerSvc',
     [
     '$q',

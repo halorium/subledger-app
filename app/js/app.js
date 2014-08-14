@@ -3,20 +3,20 @@
 (function(){
 
   // Declare app level module which depends on filters, and services
-  var spexieApp = angular.module(
-    'spexieApp',
+  var subledgerApp = angular.module(
+    'subledgerApp',
     [
       'ui.bootstrap',
       'ngRoute',
-      'spexieApp.filters',
-      'spexieApp.services',
-      'spexieApp.directives',
-      'spexieApp.controllers',
+      'subledgerApp.filters',
+      'subledgerApp.services',
+      'subledgerApp.directives',
+      'subledgerApp.controllers',
       'infinite-scroll'
     ]
   );
 
-  spexieApp.config(
+  subledgerApp.config(
     [
       '$routeProvider',
       function($routeProvider) {
@@ -64,7 +64,7 @@
   );
 
 
-  // spexieApp.config(
+  // subledgerApp.config(
   //   [
   //     '$routeProvider',
   //     function($routeProvider) {

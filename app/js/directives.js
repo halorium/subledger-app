@@ -4,9 +4,9 @@
 
   /* Directives */
 
-  var spexieAppDirectives = angular.module('spexieApp.directives', []);
+  var subledgerAppDirectives = angular.module('subledgerApp.directives', []);
 
-  spexieAppDirectives.directive(
+  subledgerAppDirectives.directive(
     'appVersion',
     [
       'version',
@@ -18,7 +18,7 @@
     ]
   );
 
-  // spexieAppDirectives.directive(
+  // subledgerAppDirectives.directive(
   //   'journalEntries',
   //   [
   //     'je',
