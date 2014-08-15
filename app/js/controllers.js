@@ -14,6 +14,10 @@
       '$route',
       function($scope, $location, $route) {
         $scope.loggedIn = $scope.loggedIn || false;
+        if (!$scope.loggedIn) {
+          $location.path('/login');
+          $route.reload();
+        };
         $scope.logIn = function(){
           $scope.loggedIn = true;
           $location.path('/');
