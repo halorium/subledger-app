@@ -10,15 +10,57 @@
     'appCtrl',
     [
       '$scope',
-      function($scope) {
-        $scope.loggedIn = true;
+      '$location',
+      '$route',
+      function($scope, $location, $route) {
+        $scope.loggedIn = $scope.loggedIn || false;
         $scope.logIn = function(){
           $scope.loggedIn = true;
+          $location.path('/');
+          $route.reload();
         };
         $scope.logOut = function(){
           $scope.loggedIn = false;
+          $location.path('/login');
+          $route.reload();
         };
         $scope.alert = false;
+      }
+    ]
+  );
+
+  subledgerAppControllers.controller(
+    'LoginCtrl',
+    [
+      '$scope',
+      '$rootScope',
+      function($scope, $rootScope) {
+        $scope.init = function(){
+          $scope.creds = {};
+        };
+        $scope.demoCreds = function(){
+          $scope.creds = {
+            key: '8bDALFFz8q7uvFNskbW9Kq',
+            secret: 'flWncmVODPlEUktLahThhW',
+            org: 'Mx88KmjlVja1i4EMXoBjs1',
+            book: '7klMwkWbY7HWR8qqq24W5U'
+          };
+        };
+        $scope.login = function(){
+          if ($scope.creds.key && $scope.creds.secret && $scope.creds.org) {
+            $scope.logIn();
+          }
+        };
+      }
+    ]
+  );
+
+  subledgerAppControllers.controller(
+    'NavBarCtrl',
+    [
+      '$scope',
+      function($scope) {
+        $scope.isCollapsed = true;
       }
     ]
   );

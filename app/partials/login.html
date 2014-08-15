@@ -1,3 +1,32 @@
-<div class="login">
-  <p>Login</p>
+<div class="login" ng-controller="LoginCtrl as loginCtrl" ng-init="init()">
+  <div class="ember-view login-container">
+    <div class="row login">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form role="form">
+              <div class="form-group">
+                <input class="ember-view ember-text-field form-control" placeholder="key_id" autofocus="autofocus" type="text" value="{{creds.key}}">
+              </div>
+              <div class="form-group">
+                <input class="ember-view ember-text-field form-control" placeholder="secret" type="text" value="{{creds.secret}}">
+              </div>
+              <div class="form-group">
+                <input class="ember-view ember-text-field form-control" placeholder="org" type="text" value="{{creds.org}}">
+              </div>
+              <br>
+              <div class="decimal-places">
+                <div class="slider slider-horizontal">
+                  <input class="ember-view ember-text-field" type="text" value="2" style="display: none;">
+                </div>
+              </div>
+              <br>
+              <input class="ember-view ember-text-field btn btn-primary btn-block" type="submit" value="Login" ng-click="login()">
+            </form>
+          </div>
+        </div>
+        <p class="example">Just want to see it working? <a href="#/login" ng-click="demoCreds()">Use our demo application credentials!</a></p>
+      </div>
+    </div>
+  </div>
 </div>

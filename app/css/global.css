@@ -81,7 +81,9 @@ body {
 
 .app-body .app-all-content .app-main-content {
   float: left;
-  width: 75%; }
+  /*width: 75%;*/
+  width: 100%;
+}
 
 .app-body .app-all-content .app-main-content {
   position: relative;
@@ -301,3 +303,11 @@ td.col-md-1.reference, th.col-md-1.reference {
 
 .journal-entries .index > section.infinite-scroll {
   height: 100%; }
+
+body > div > div.app-body > div > div.app-main-content > div > div > div > section > div {
+  width: 100%;
+}
+
+body > div > div.app-body > div:nth-child(2) > div.app-main-content {
+  width: 100%;
+}

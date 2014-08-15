@@ -23,7 +23,7 @@
         $routeProvider.
           when('/login', {
             templateUrl: 'partials/login.html',
-            controller: 'appCtrl'
+            controller: 'LoginCtrl'
           }).
           when('/books', {
             templateUrl: 'partials/books.html',

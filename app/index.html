@@ -23,10 +23,15 @@
       <div ng-include src="'partials/nav.html'" class="include"></div>
     </div>
     <div class="app-body">
-      <div class="app-all-content">
+      <div class="app-all-content" ng-show="loggedIn">
         <div class="app-main-nav">
           <div ng-include src="'partials/main-content-nav.html'" class="include"></div>
         </div>
+        <div class="app-main-content">
+          <div ng-view class="view-frame"></div>
+        </div>
+      </div>
+      <div class="app-all-content" ng-show="!loggedIn">
         <div class="app-main-content">
           <div ng-view class="view-frame"></div>
         </div>
