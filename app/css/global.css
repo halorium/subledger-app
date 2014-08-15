@@ -311,3 +311,7 @@ body > div > div.app-body > div > div.app-main-content > div > div > div > secti
 body > div > div.app-body > div:nth-child(2) > div.app-main-content {
   width: 100%;
 }
+
+body > div > div.app-body > div:nth-child(2) > div > div > div > div > div > div > p {
+  text-align: center;
+}
