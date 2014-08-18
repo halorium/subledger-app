@@ -14,10 +14,10 @@
       '$route',
       function($scope, $location, $route) {
         $scope.loggedIn = $scope.loggedIn || false;
-        if (!$scope.loggedIn) {
-          $location.path('/login');
-          $route.reload();
-        };
+        // if (!$scope.loggedIn) {
+        //   $location.path('/login');
+        //   $route.reload();
+        // };
         $scope.logIn = function(){
           $scope.loggedIn = true;
           $location.path('/');
@@ -33,6 +33,48 @@
     ]
   );
 
+  subledgerAppControllers.controller(
+    'SignupCtrl',
+    [
+      '$scope',
+      '$rootScope',
+      '$firebase',
+      function($scope, $rootScope, $firebase) {
+
+        var ref = new Firebase("https://sweltering-torch-4594.firebaseio.com/users");
+        // create an AngularFire reference to the data
+        var sync = $firebase(ref);
+
+
+        // // replace the entire node with new data
+        // sync.$set({foo: "bar"});
+        // // add a new child node
+        // sync.$push({name: $scope.name}).then(function(newChildRef) {
+        //   console.log("added record with id " + newChildRef.name());
+        // });
+        // // remove a child node (by passing its key)
+        // sync.$remove("foo");
+        // // replace some child nodes but leave the rest alone
+        // var changedData = {foo: "bar", bar: {hello: "world"}, baz: null};
+        // sync.$update(changedData);
+
+
+        // download the data into a local object
+        $scope.data = sync.$asObject();
+        // synchronize the object with a three-way data binding
+        // click on `index.html` above to see it used in the DOM!
+        // syncObject.$bindTo($scope, "data");
+
+        $scope.signup = function(){
+          console.log( $scope.data.name );
+          sync.$push({name: $scope.data.name}).then(function(newChildRef) {
+            console.log("added record with id " + newChildRef.name());
+          });
+        };
+
+      }
+    ]
+  );
   subledgerAppControllers.controller(
     'LoginCtrl',
     [

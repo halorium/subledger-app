@@ -12,7 +12,8 @@
       'subledgerApp.services',
       'subledgerApp.directives',
       'subledgerApp.controllers',
-      'infinite-scroll'
+      'infinite-scroll',
+      'firebase'
     ]
   );
 
@@ -21,6 +22,10 @@
       '$routeProvider',
       function($routeProvider) {
         $routeProvider.
+          when('/signup', {
+            templateUrl: 'partials/signup.html',
+            controller: 'SignupCtrl'
+          }).
           when('/login', {
             templateUrl: 'partials/login.html',
             controller: 'LoginCtrl'
